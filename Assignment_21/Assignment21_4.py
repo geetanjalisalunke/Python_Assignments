@@ -47,14 +47,14 @@ def ProcessDisplay(Dir_name):
 
     return path
 
-def Send_mail(path):
+def Send_mail(mail,path):
     
     log_file_path=path
 
     msg = EmailMessage()
     msg['Subject'] = 'Log File Report'
     msg['From'] = 'geetanjalisalunke12@gmail.com'
-    msg['To'] = 'shivanjalis622@gmail.com'
+    msg['To'] = mail
     msg.set_content('Please find the attached log file.')
 
     fobj=open(log_file_path,'rb')
@@ -81,8 +81,9 @@ def Send_mail(path):
     
 def main():
     Dir_name=sys.argv[1]
+    mail=sys.argv[2]
     ret=ProcessDisplay(Dir_name)
-    Send_mail(ret)
+    Send_mail(mail,ret)
 
 if __name__=="__main__":
     main()
